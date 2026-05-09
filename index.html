@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Roop!</title>
+    <title>Happy Birthday Alziya!</title>
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
+        :root {
+            --primary: #FF416C;
+            --secondary: #FF4B2B;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -13,117 +20,190 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #e0f2f1 0%, #e8f5e9 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
+            perspective: 1000px; /* For 3D effect */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-container {
+            transition: transform 0.1s;
+            transform-style: preserve-3d;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            padding: 3.5rem;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            /* Upgraded Glassmorphism */
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 4rem 3.5rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            animation: fadeIn 1.2s ease-out;
-            max-width: 500px;
+            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 450px;
+            transform: translateZ(30px); /* Pops out from container */
         }
 
         h1 {
-            color: #2e7d32;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
         }
 
         .name {
-            color: #1565c0;
-            font-weight: bold;
-            display: block;
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            /* Gradient Text */
+            background: linear-gradient(45deg, var(--primary), var(--secondary), #f953c6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            filter: drop-shadow(0px 4px 8px rgba(255, 65, 108, 0.3));
         }
 
         p {
-            font-size: 1.2rem;
-            color: #37474f;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
         }
 
         .btn {
-            background: #1565c0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            border-radius: 12px;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(21, 101, 192, 0.4);
-            background: #0d47a1;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(255, 65, 108, 0.6);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        .btn:active {
+            transform: translateY(2px) scale(0.95);
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(40px) translateZ(30px); }
+            to { opacity: 1; transform: translateY(0) translateZ(30px); }
         }
 
         .star {
             display: inline-block;
-            animation: pulse 2s infinite;
+            font-size: 55px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="star" style="font-size: 50px; margin-bottom: 10px;">🌟</div>
-        <h1>Happy Birthday,</h1>
-        <span class="name">Roop!</span>
-        <p>Wishing you a year of incredible learning, new milestones, and the success your hard work deserves. Keep shining and reaching for your goals!</p>
-        
-        <button class="btn" onclick="celebrate()">Launch Celebration 🎉</button>
+    <div class="card-container" id="cardContainer">
+        <div class="card">
+            <div class="star">✨</div>
+            <h1>Happy Birthday,</h1>
+            <span class="name">Alziya!</span>
+            <p>Wishing you an amazing birthday! Here's to more laughs, great adventures, and making unforgettable memories this year. Have the absolute best day ever!</p>
+            
+            <button class="btn" onclick="celebrate()">Launch Celebration 🎉</button>
+        </div>
     </div>
 
     <script>
+        // --- 1. 3D Hover Effect for the Card ---
+        const container = document.getElementById('cardContainer');
+        
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset transform when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            container.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            container.style.transition = 'transform 0.5s ease';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            container.style.transition = 'none';
+        });
+
+        // --- 2. Upgraded Fireworks Confetti ---
         function celebrate() {
-            const duration = 3 * 1000;
-            const end = Date.now() + duration;
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-            (function frame() {
-                confetti({
-                    particleCount: 3,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#1565c0', '#2e7d32', '#ffd600']
-                });
-                confetti({
-                    particleCount: 3,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#1565c0', '#2e7d32', '#ffd600']
-                });
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
 
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
+            const interval = setInterval(function() {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
                 }
-            }());
+
+                const particleCount = 50 * (timeLeft / duration);
+                
+                // Fire from multiple random locations
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    colors: ['#ff416c', '#ff4b2b', '#ffffff', '#ffd700']
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    colors: ['#23a6d5', '#23d5ab', '#ffffff', '#ffd700']
+                }));
+            }, 250);
         }
+
+        // Trigger a small pop on load
+        window.onload = () => {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 500);
+        };
     </script>
 </body>
 </html>
